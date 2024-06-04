@@ -1,0 +1,64 @@
+﻿@model BookStore.Models.Order
+@using BookStore.Helpers
+
+<h1>Order Details</h1>
+
+<h5 class="mt-5">Order Id: @Model.Id</h5>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Book</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Item Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.OrderItems)
+        {
+                <tr>
+                    <td>
+                    @if (item.Book != null)
+                    {
+                                <a class="a-cleanup" asp-controller="Store" asp-action="Details" asp-route-id="@item.BookId"><img src="@item.Book.ImageUrl" style="height: 4em"></a>
+                    }
+                    </td>
+                    <td>
+                    @if (item.Book != null)
+                    {
+                                <a class="a-cleanup" asp-controller="Store" asp-action="Details" asp-route-id="@item.BookId">@item.Book.Title</a>
+                    }
+                    else
+                    {
+                        @item.BookId
+                    }
+                    </td>
+                    <td>
+                    @Html.DisplayPrice(item.Price)
+                    </td>
+                    <td>
+                    @item.Quantity
+                    </td>
+                    <td>
+                    @Html.DisplayPrice(item.Order.OrderTotal)
+                    </td>
+                </tr>
+        }
+
+    </tbody>
+    <tfoot>
+        <tr>
+            <td></td>
+            <td class="text-right">
+                <strong>Total:</strong>
+            </td>
+            <td colspan="2"></td>
+            <td>
+                <strong>@Html.DisplayPrice(Model.OrderTotal)</strong>
+            </td>
+        </tr>
+    </tfoot>
+                   <a asp-action="DeleteOrder" asp-route-id="@Model.Id" class="btn btn-danger">Delete</a>
+</table>

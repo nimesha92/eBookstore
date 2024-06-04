@@ -1,0 +1,56 @@
+﻿@model IEnumerable<BookStore.Models.Book>
+
+@{
+    ViewData["Title"] = "Index";
+
+    string HasImage(Book book)
+    {
+        return !string.IsNullOrEmpty(book.ImageUrl) ? "fa-solid fa-check" : "fa-solid fa-x";
+    }
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="mb-4">Books</h1>
+            <p>
+                <a asp-action="Create" class="btn btn-primary"><i class="fas fa-plus"></i> Add Book</a>
+            </p>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>@Html.DisplayNameFor(model => model.Title)</th>
+                            <th>@Html.DisplayNameFor(model => model.Author)</th>
+                            <th>@Html.DisplayNameFor(model => model.Language)</th>
+                            <th>@Html.DisplayNameFor(model => model.ISBN)</th>
+                            <th>@Html.DisplayNameFor(model => model.DatePublished)</th>
+                            <th>@Html.DisplayNameFor(model => model.Price)</th>
+                            <th>Has Image</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                                <tr>
+                                    <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Author)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Language)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.ISBN)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.DatePublished)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Price)</td>
+                                    <td><i class="@HasImage(item)"></i></td>
+                                    <td>
+                                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary"><i class="fas fa-pencil-alt"></i></a>
+                                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-success"><i class="fas fa-info-circle"></i></a>
+                                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
+                                    </td>
+                                </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

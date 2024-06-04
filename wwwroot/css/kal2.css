@@ -1,0 +1,48 @@
+﻿/* General Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+}
+
+/* About Section */
+.about-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+
+.icon {
+    font-size: 3rem;
+    margin-right: 2rem;
+    color: #007bff;
+}
+
+.about-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* Image Section */
+.image-section {
+    text-align: center;
+}
+
+.about-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Media Queries */
+@media (max-width: 767px) {
+    .about-section {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .icon {
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+}

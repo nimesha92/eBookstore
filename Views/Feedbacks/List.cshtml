@@ -1,0 +1,33 @@
+﻿@model IEnumerable<BookStore.Models.Feedback>
+
+@{
+    ViewData["Title"] = "List";
+}
+
+<div class="container">
+    <h1 class="mb-4">Your Feedbacks</h1>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Message</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                        <tr>
+                            <td>@item.Name</td>
+                            <td>@item.Message</td>
+                        </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="mt-4">
+        <a asp-action="Create" class="btn btn-primary"><i class="fas fa-plus"></i> Create New Feedback</a>
+    </div>
+</div>
